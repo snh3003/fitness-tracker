@@ -27,9 +27,6 @@
         minlength="6"
         required
       />
-      <mat-hint align="end">
-        Password must be at least 6 characters long
-      </mat-hint>
     </mat-form-field>
     <mat-form-field>
       <input
@@ -37,10 +34,16 @@
         placeholder="Your birthdate"
         [matDatepicker]="picker"
         [max]="maxDate"
+        ngModel
+        name="bday"
+        required
       />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Sign up</button>
+    <mat-checkbox ngModel name="terms">
+      Agree to terms & conditions
+    </mat-checkbox>
+    <button mat-raised-button color="primary" [disabled]="f.invalid" type="submit">Sign up</button>
   </form>
 </section>

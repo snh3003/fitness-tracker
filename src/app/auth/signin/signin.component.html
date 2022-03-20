@@ -1,1 +1,39 @@
-<p>signin works!</p>
+<section>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-form-field>
+      <input
+        matInput
+        type="email"
+        placeholder="Enter your email"
+        name="email"
+        ngModel
+        email
+        required
+      />
+    </mat-form-field>
+    <mat-form-field hintLabel="Password must be 6 characters">
+      <input
+        matInput
+        type="password"
+        placeholder="Enter your password"
+        name="password"
+        ngModel
+        minlength="6"
+        required
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      [disabled]="f.invalid"
+      type="submit"
+    >
+      Login
+    </button>
+  </form>
+</section>
