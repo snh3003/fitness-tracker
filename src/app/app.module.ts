@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidenavlistComponent } from './navigation/sidenavlist/sidenavlist.component';
 import { StopTrainingComponent } from './training/stop-training/stop-training.component';
+import { AuthService } from './auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { StopTrainingComponent } from './training/stop-training/stop-training.co
     AppRoutingModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
   entryComponents: [StopTrainingComponent],
 })
