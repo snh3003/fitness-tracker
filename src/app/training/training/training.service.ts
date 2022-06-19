@@ -13,14 +13,11 @@ export class TrainingService {
     { id: 'tricep-dips', name: 'Tricep Dips', duration: 60, calories: 8 },
     { id: 'plank', name: 'Plank', duration: 30, calories: 8 },
   ];
-
   private runningExercise: Exercise;
   private exercises: Exercise[] = [];
 
-  getAvailableExercises(): Exercise[] {
-    return this.availableExercises.map((exercise) => {
-      return { ...exercise };
-    });
+  getAvailableExercises() {
+    return this.availableExercises.slice();
   }
 
   startExercise(selectedId: string) {
@@ -30,11 +27,12 @@ export class TrainingService {
     this.exerciseChanged.next({ ...this.runningExercise });
   }
 
-  getRunningExercise() {
-    return { ...this.runningExercise };
-  }
-
   completeExercise() {
+    this.exercises.push({
+      ...this.runningExercise,
+      date: new Date(),
+      state: 'completed',
+    });
     this.runningExercise = null;
     this.exerciseChanged.next(null);
   }
@@ -51,7 +49,11 @@ export class TrainingService {
     this.exerciseChanged.next(null);
   }
 
-  getCompletedOrCancelledExercises = () => {
+  getRunningExercise() {
+    return { ...this.runningExercise };
+  }
+
+  getCompletedOrCancelledExercises() {
     return this.exercises.slice();
-  };
+  }
 }
