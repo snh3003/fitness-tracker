@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +20,7 @@ import { SidenavlistComponent } from './navigation/sidenavlist/sidenavlist.compo
 import { StopTrainingComponent } from './training/stop-training/stop-training.component';
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training/training.service';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,8 @@ import { TrainingService } from './training/training/training.service';
     MaterialModule,
     AppRoutingModule,
     FormsModule,
+    provideFirebaseApp(() => initializeApp({ ...environment.firebaseConfig })),
+    provideFirestore(() => getFirestore()),
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
