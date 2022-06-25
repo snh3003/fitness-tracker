@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
-import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,8 +42,8 @@ import { environment } from 'src/environments/environment';
     MaterialModule,
     AppRoutingModule,
     FormsModule,
-    provideFirebaseApp(() => initializeApp({ ...environment.firebaseConfig })),
-    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp({ ...environment.firebaseConfig }),
+    AngularFirestoreModule,
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],
