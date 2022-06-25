@@ -10,26 +10,23 @@ import { Exercise } from '../training/exercise.modal';
   styleUrls: ['./new-training.component.css'],
 })
 export class NewTrainingComponent implements OnInit, OnDestroy {
-  exercises: Exercise[] = [];
+  exercises: Exercise[];
   exerciseSubscription: Subscription;
 
   constructor(private trainingService: TrainingService) {}
 
-  ngOnInit(): void {
-    this.exerciseSubscription = this.trainingService.exerciseChanged.subscribe(
-      (exercises: Exercise[]) => {
-        this.exercises = exercises;
-      }
+  ngOnInit() {
+    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(
+      (exercises) => (this.exercises = exercises)
     );
     this.trainingService.fetchAvailableExercises();
   }
 
-  onStartTraining(f: NgForm) {
-    this.trainingService.startExercise(f.value.exercise);
-    //this.trainingStart.emit();
+  onStartTraining(form: NgForm) {
+    this.trainingService.startExercise(form.value.exercise);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this.exerciseSubscription.unsubscribe();
   }
 }

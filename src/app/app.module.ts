@@ -21,6 +21,7 @@ import { StopTrainingComponent } from './training/stop-training/stop-training.co
 import { AuthService } from './auth/auth.service';
 import { TrainingService } from './training/training/training.service';
 import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     AngularFireModule.initializeApp({ ...environment.firebaseConfig }),
     AngularFirestoreModule,
+    AngularFireAuthModule,
   ],
   providers: [AuthService, TrainingService],
   bootstrap: [AppComponent],

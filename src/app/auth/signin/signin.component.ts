@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ChildActivationStart } from '@angular/router';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -22,9 +21,10 @@ export class SigninComponent implements OnInit {
   }
 
   onSubmit = (form: NgForm) => {
+    console.log('Login form: ', form.value);
     this.authService.login({
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password,
+      email: form.value.email,
+      password: form.value.password,
     });
   };
 }
