@@ -30,9 +30,7 @@ export class AuthService {
       })
       .catch((error) => {
         this.uiService.isLoadingChanged.next(false);
-        this.snackBar.open(error.message, null, {
-          duration: 3000,
-        });
+        this.uiService.showSnackBar(error.message, null, 3000);
       });
   }
 
@@ -42,15 +40,11 @@ export class AuthService {
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then((result) => {
         this.uiService.isLoadingChanged.next(false);
-        this.snackBar.open('Login successful', null, {
-          duration: 3000,
-        });
+        this.uiService.showSnackBar('Login Success', null, 3000);
       })
       .catch((error) => {
         this.uiService.isLoadingChanged.next(false);
-        this.snackBar.open(error.message, null, {
-          duration: 3000,
-        });
+        this.uiService.showSnackBar(error.message, null, 3000);
       });
   }
 
