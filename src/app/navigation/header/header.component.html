@@ -1,18 +1,24 @@
 <mat-toolbar color="primary">
   <div fxHide.gt-xs>
     <button mat-icon-button (click)="onToggleSidenav()">
-      <mat-icon> menu </mat-icon>
+      <mat-icon>menu</mat-icon>
     </button>
   </div>
   <div>
-    <a routerLink="/"> Ng Fitness Tracker </a>
+    <a routerLink="/">NG Fitness</a>
   </div>
   <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
-    <ul fxLayoutGap="10">
-      <li *ngIf="!isAuth"><a routerLink="/signin">Login</a></li>
-      <li *ngIf="!isAuth"><a routerLink="/signup">Register</a></li>
-      <li *ngIf="isAuth"><a routerLink="/training">Training</a></li>
-      <li *ngIf="isAuth">
+    <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+      <li *ngIf="isAuth$ | async">
+        <a routerLink="/signup">Signup</a>
+      </li>
+      <li *ngIf="isAuth$ | async">
+        <a routerLink="/signin">Login</a>
+      </li>
+      <li *ngIf="!(isAuth$ | async)">
+        <a routerLink="/training">Training</a>
+      </li>
+      <li *ngIf="!(isAuth$ | async)">
         <a style="cursor: pointer" (click)="onLogout()">Logout</a>
       </li>
     </ul>
